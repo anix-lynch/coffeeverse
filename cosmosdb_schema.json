@@ -1,0 +1,95 @@
+{
+  "database": {
+    "id": "coffeeverse-db",
+    "containers": [
+      {
+        "id": "cocktails",
+        "partitionKey": {
+          "paths": ["/category"],
+          "kind": "Hash"
+        },
+        "indexingPolicy": {
+          "indexingMode": "consistent",
+          "automatic": true,
+          "includedPaths": [
+            {
+              "path": "/*"
+            }
+          ],
+          "excludedPaths": [
+            {
+              "path": "/\"_etag\"/?"
+            }
+          ]
+        },
+        "uniqueKeyPolicy": {
+          "uniqueKeys": [
+            {
+              "paths": ["/id"]
+            }
+          ]
+        },
+        "conflictResolutionPolicy": {
+          "mode": "LastWriterWins",
+          "conflictResolutionPath": "/_ts"
+        }
+      },
+      {
+        "id": "pipeline-metadata",
+        "partitionKey": {
+          "paths": ["/pipeline_name"],
+          "kind": "Hash"
+        },
+        "indexingPolicy": {
+          "indexingMode": "consistent",
+          "automatic": true,
+          "includedPaths": [
+            {
+              "path": "/last_run/?"
+            },
+            {
+              "path": "/status/?"
+            }
+          ],
+          "excludedPaths": [
+            {
+              "path": "/\"_etag\"/?"
+            }
+          ]
+        }
+      }
+    ],
+    "throughput": {
+      "throughput": 1000
+    }
+  },
+  "sampleDocument": {
+    "id": "sample-cocktail-001",
+    "category": "Ordinary Drink",
+    "name": "Margarita",
+    "spirit_type": "Tequila",
+    "is_alcoholic": true,
+    "glass_type": "Cocktail glass",
+    "instructions": "Shake with ice and strain into cocktail glass",
+    "ingredients": [
+      {
+        "name": "Tequila",
+        "measure": "2 oz"
+      },
+      {
+        "name": "Triple sec",
+        "measure": "1 oz"
+      },
+      {
+        "name": "Lime juice",
+        "measure": "1 oz"
+      }
+    ],
+    "complexity_score": 6.5,
+    "estimated_calories": 168,
+    "tags": ["citrus", "mexico", "classic"],
+    "source_api": "TheCocktailDB",
+    "processed_at": "2025-11-15T10:30:00Z",
+    "_partitionKey": "Ordinary Drink"
+  }
+}

@@ -1,0 +1,23 @@
+# Azure Functions Core Tools
+azure-functions
+azure-functions-worker
+
+# Azure SDK
+azure-storage-blob>=12.19.0
+azure-cosmos>=4.5.0
+azure-identity>=1.15.0
+
+# Data Processing
+pandas>=2.1.0
+numpy>=1.24.0
+requests>=2.31.0
+
+# JSON Processing
+jsonschema>=4.19.0
+
+# Logging and Monitoring
+opencensus-ext-azure>=1.1.9
+
+# Development
+pytest>=7.4.0
+pytest-azure-functions>=1.0.0
