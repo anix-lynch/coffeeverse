@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Azure Credentials (CRITICAL - NEVER COMMIT)
+azure.env
+*.env
+.azure/
+.azcli/
+local.settings.json
+*.publish.settings
+
+# Azure Functions
+.vscode/
+.funcignore
+__blobstorage__/
+__queuestorage__/
+__azurite_db*__.json
+
+# dbt artifacts
+dbt_project/target/
+dbt_project/logs/
+dbt_project/.dbt/
+
+# Python
+venv/
+env/
+ENV/
+.Python
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS
+.DS_Store
+*.swp
+*.swo
+*~
+
