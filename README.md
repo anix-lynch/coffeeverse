@@ -4,7 +4,8 @@ An end-to-end Azure-native ETL/ELT pipeline demonstrating enterprise-grade data 
 
 ![Demo](demo.gif)
 
-🔗 **Live Dashboard**: [coffeeverse.streamlit.app](https://coffeeverse.streamlit.app) *(Coming Soon)*
+🔗 **Live Dashboard**: [coffeeverse.streamlit.app](https://coffeeverse.streamlit.app)
+🔗 **GitHub Repository**: [github.com/anix-lynch/coffeeverse](https://github.com/anix-lynch/coffeeverse)
 
 ## 🏗️ Architecture Overview
 
@@ -69,6 +70,27 @@ az datafactory pipeline create-run \
   --factory-name coffeeverse-adf \
   --name coffeeverse-etl-pipeline
 ```
+
+## 🚀 Deployment Status
+
+### ✅ **Distro Dojo Deployment Complete**
+Following the Distro Dojo rule for maximum visibility and accessibility:
+
+| Platform | Status | URL |
+|----------|--------|-----|
+| **GitHub** | ✅ Deployed | [github.com/anix-lynch/coffeeverse](https://github.com/anix-lynch/coffeeverse) |
+| **Streamlit Cloud** | 🔄 Ready | [coffeeverse.streamlit.app](https://coffeeverse.streamlit.app) |
+| **Docker Hub** | 📋 Planned | *(Containerized ETL pipeline)* |
+| **Portfolio** | 📋 Planned | *(gozeroshot.dev)* |
+
+### **Deploy to Streamlit Cloud**
+1. Go to [share.streamlit.io](https://share.streamlit.io)
+2. Connect GitHub repo: `anix-lynch/coffeeverse`
+3. Set main file: `streamlit_app.py`
+4. Add Azure secrets from `.env.azure` file
+5. Deploy!
+
+*See [STREAMLIT_DEPLOYMENT.md](STREAMLIT_DEPLOYMENT.md) for detailed instructions.*
 
 ## 📁 Project Structure
 
