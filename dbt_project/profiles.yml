@@ -1,0 +1,24 @@
+coffeeverse:
+  target: dev
+  outputs:
+    dev:
+      type: synapse
+      driver: 'ODBC Driver 18 for SQL Server'
+      server: "{{ env_var('AZURE_SYNAPSE_SERVER') }}"
+      port: 1433
+      database: "{{ env_var('AZURE_SYNAPSE_DATABASE', 'coffeeverse_dev') }}"
+      schema: "{{ env_var('AZURE_SYNAPSE_SCHEMA', 'dbo') }}"
+      user: "{{ env_var('AZURE_SYNAPSE_USER') }}"
+      password: "{{ env_var('AZURE_SYNAPSE_PASSWORD') }}"
+      authentication: sql
+
+    prod:
+      type: synapse
+      driver: 'ODBC Driver 18 for SQL Server'
+      server: "{{ env_var('AZURE_SYNAPSE_SERVER') }}"
+      port: 1433
+      database: "{{ env_var('AZURE_SYNAPSE_DATABASE', 'coffeeverse_prod') }}"
+      schema: "{{ env_var('AZURE_SYNAPSE_SCHEMA', 'dbo') }}"
+      user: "{{ env_var('AZURE_SYNAPSE_USER') }}"
+      password: "{{ env_var('AZURE_SYNAPSE_PASSWORD') }}"
+      authentication: sql

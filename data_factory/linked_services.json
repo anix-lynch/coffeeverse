@@ -1,0 +1,67 @@
+{
+  "linkedServices": [
+    {
+      "name": "AzureBlobStorage_LinkedService",
+      "type": "AzureBlobStorage",
+      "properties": {
+        "typeProperties": {
+          "connectionString": "DefaultEndpointsProtocol=https;AccountName=@{linkedService().storageAccountName};AccountKey=@{linkedService().storageAccountKey};EndpointSuffix=core.windows.net"
+        },
+        "parameters": {
+          "storageAccountName": {
+            "type": "String"
+          },
+          "storageAccountKey": {
+            "type": "String"
+          }
+        }
+      }
+    },
+    {
+      "name": "AzureCosmosDb_LinkedService",
+      "type": "CosmosDb",
+      "properties": {
+        "typeProperties": {
+          "connectionString": "AccountEndpoint=@{linkedService().cosmosEndpoint};AccountKey=@{linkedService().cosmosKey};"
+        },
+        "parameters": {
+          "cosmosEndpoint": {
+            "type": "String"
+          },
+          "cosmosKey": {
+            "type": "String"
+          }
+        }
+      }
+    },
+    {
+      "name": "AzureFunction_LinkedService",
+      "type": "AzureFunction",
+      "properties": {
+        "typeProperties": {
+          "functionAppUrl": "https://@{linkedService().functionAppName}.azurewebsites.net",
+          "functionKey": "@{linkedService().functionKey}"
+        },
+        "parameters": {
+          "functionAppName": {
+            "type": "String"
+          },
+          "functionKey": {
+            "type": "String"
+          }
+        }
+      }
+    },
+    {
+      "name": "CocktailDB_API_LinkedService",
+      "type": "RestService",
+      "properties": {
+        "typeProperties": {
+          "url": "https://www.thecocktaildb.com",
+          "enableServerCertificateValidation": true,
+          "authenticationType": "Anonymous"
+        }
+      }
+    }
+  ]
+}

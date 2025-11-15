@@ -51,30 +51,29 @@ coffeeverse/
 - [x] `cosmosdb_schema.json` - Cosmos DB container schema
 - [x] `streamlit_app.py` - Monitoring dashboard (adapted from Mocktailverse)
 
-### Priority 2: IaC & Deployment
-- [ ] `deploy/main.bicep` - Bicep IaC template
-- [ ] `deploy/main.json` - ARM template (alternative)
-- [ ] `deploy/deploy.sh` - Deployment automation script
-- [ ] `deploy/destroy.sh` - Teardown script
+### Priority 2: IaC & Deployment ✅ COMPLETED
+- [x] `deploy/main.bicep` - Bicep IaC template (Storage + Cosmos DB + Functions + Data Factory)
+- [x] `deploy/deploy.sh` - Automated deployment script
+- [x] `deploy/destroy.sh` - Resource cleanup script
 
-### Priority 3: dbt Transformations
-- [ ] `dbt_project/dbt_project.yml` - dbt project config
-- [ ] `dbt_project/profiles.yml` - Azure Synapse connection
-- [ ] `dbt_project/models/staging/stg_cocktails.sql`
-- [ ] `dbt_project/models/marts/mart_cocktail_analytics.sql`
+### Priority 3: dbt Transformations ✅ COMPLETED
+- [x] `dbt_project/dbt_project.yml` - dbt project configuration
+- [x] `dbt_project/profiles.yml` - Azure Synapse connection profiles
+- [x] `dbt_project/models/staging/stg_cocktails.sql` - Staging model
+- [x] `dbt_project/models/marts/mart_cocktail_analytics.sql` - Analytics mart
+- [x] `dbt_project/models/sources.yml` - Data source definitions
 
-### Priority 4: Data Factory
-- [ ] `data_factory/pipeline.json` - ADF pipeline definition
-- [ ] `data_factory/linked_services.json` - ADF connections
+### Priority 4: Data Factory ✅ COMPLETED
+- [x] `data_factory/pipeline.json` - ETL orchestration pipeline
+- [x] `data_factory/linked_services.json` - ADF connections
+- [x] `data_factory/datasets.json` - Data source/sink definitions
 
-### Priority 5: Additional Docs
+### Remaining Tasks (Phase 3)
 - [ ] `DEPLOYMENT.md` - Step-by-step deployment guide
 - [ ] `COST_CONTROL.md` - Azure cost optimization strategies
 - [ ] `load_sample_data.py` - Sample data loader
-
-### Priority 6: Testing & Demo
-- [ ] Sample data file (margarita_recipes.json or coffee_recipes.json)
-- [ ] Test Azure deployment
+- [ ] Sample data file (margarita_recipes.json)
+- [ ] Test Azure deployment locally
 - [ ] Deploy Streamlit dashboard to Streamlit Cloud
 - [ ] Create demo.gif
 - [ ] Add to gozeroshot.dev portfolio
@@ -164,11 +163,10 @@ func start  # Test Azure Function locally
 ## 📊 Completion Estimate
 
 - **Phase 1**: 20% complete ✅ (Documentation & Azure Function code)
-- **Phase 2**: 50% complete 🟡 (Core schemas & dashboard - IN PROGRESS)
-- **Phase 3**: Add IaC, dbt, Data Factory → 80% complete
-- **Phase 4**: Test, deploy, add to portfolio → 100% complete
+- **Phase 2**: 80% complete 🟢 (IaC, dbt, Data Factory - COMPLETED)
+- **Phase 3**: 8 remaining tasks → 100% complete
 
-**Estimated Time**: 2-3 hours to complete remaining files + deployment
+**Estimated Time**: 1-2 hours to complete remaining tasks + deployment
 
 ---
 
@@ -182,7 +180,7 @@ func start  # Test Azure Function locally
 
 ---
 
-**Last Updated**: November 16, 2025 11:45 PST
-**Next Session**: Priority 2 - IaC templates, then dbt, then Data Factory
-**Status**: Continue Phase 2 - 50% complete, making great progress! 🚀
+**Last Updated**: November 16, 2025 12:30 PST
+**Next Session**: Phase 3 - Final 8 tasks: docs, testing, deployment
+**Status**: Phase 2 COMPLETED! Ready for final deployment phase 🎯
 

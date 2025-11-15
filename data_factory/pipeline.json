@@ -1,0 +1,154 @@
+{
+  "name": "coffeeverse-etl-pipeline",
+  "properties": {
+    "activities": [
+      {
+        "name": "ExtractCocktailData",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "source": {
+            "type": "RestSource",
+            "httpRequestTimeout": "00:01:40",
+            "requestInterval": "00.00:00:00.010",
+            "requestMethod": "GET",
+            "additionalHeaders": {
+              "User-Agent": "Azure Data Factory"
+            },
+            "paginationRules": {
+              "supportRFC5988": false
+            }
+          },
+          "sink": {
+            "type": "BlobSink",
+            "copyBehavior": "PreserveHierarchy"
+          },
+          "enableStaging": false,
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "path": "$['drinks']"
+                },
+                "sink": {
+                  "name": "drinks"
+                }
+              }
+            ]
+          }
+        },
+        "inputs": [
+          {
+            "referenceName": "CocktailDB_API",
+            "type": "DatasetReference"
+          }
+        ],
+        "outputs": [
+          {
+            "referenceName": "RawCocktailData_Blob",
+            "type": "DatasetReference"
+          }
+        ]
+      },
+      {
+        "name": "TriggerFunctionProcessing",
+        "type": "AzureFunctionActivity",
+        "dependsOn": [
+          {
+            "activity": "ExtractCocktailData",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "functionName": "ProcessCocktailData",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "sourceContainer": "coffeeverse-raw-data",
+            "targetContainer": "coffeeverse-processed-data",
+            "cosmosDatabase": "coffeeverse-db",
+            "cosmosContainer": "cocktails"
+          }
+        },
+        "linkedServiceName": {
+          "referenceName": "AzureFunction_LinkedService",
+          "type": "LinkedServiceReference"
+        }
+      },
+      {
+        "name": "RunDBTTransformations",
+        "type": "AzureFunctionActivity",
+        "dependsOn": [
+          {
+            "activity": "TriggerFunctionProcessing",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "functionName": "RunDBTJob",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "dbtCommand": "dbt run",
+            "target": "dev"
+          }
+        },
+        "linkedServiceName": {
+          "referenceName": "AzureFunction_LinkedService",
+          "type": "LinkedServiceReference"
+        }
+      }
+    ],
+    "parameters": {
+      "cocktailType": {
+        "type": "string",
+        "defaultValue": "Ordinary_Drink"
+      }
+    },
+    "variables": {
+      "pipelineRunId": {
+        "type": "String"
+      }
+    },
+    "folder": {
+      "name": "ETL Pipelines"
+    },
+    "annotations": [
+      "Coffeeverse ETL Pipeline",
+      "Blob Storage → Functions → Cosmos DB → dbt"
+    ]
+  }
+}

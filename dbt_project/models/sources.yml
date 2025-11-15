@@ -1,0 +1,38 @@
+version: 2
+
+sources:
+  - name: cosmosdb
+    description: "Raw cocktail data from Azure Cosmos DB"
+    database: "{{ env_var('AZURE_SYNAPSE_DATABASE', 'coffeeverse_dev') }}"
+    schema: "{{ env_var('AZURE_SYNAPSE_SCHEMA', 'dbo') }}"
+    tables:
+      - name: cocktails
+        description: "Main cocktail dataset with enrichment fields"
+        columns:
+          - name: id
+            description: "Unique cocktail identifier"
+          - name: name
+            description: "Cocktail name"
+          - name: category
+            description: "Cocktail category (e.g., Ordinary Drink)"
+          - name: spirit_type
+            description: "Primary spirit type (e.g., Vodka, Gin)"
+          - name: is_alcoholic
+            description: "Whether the cocktail contains alcohol"
+          - name: complexity_score
+            description: "Calculated complexity score (1-10)"
+          - name: estimated_calories
+            description: "Estimated calorie count"
+          - name: ingredients
+            description: "JSON array of ingredients"
+          - name: processed_at
+            description: "Timestamp when data was processed"
+
+  - name: blob_storage
+    description: "Raw data files from Azure Blob Storage"
+    database: "{{ env_var('AZURE_SYNAPSE_DATABASE', 'coffeeverse_dev') }}"
+    schema: "{{ env_var('AZURE_SYNAPSE_SCHEMA', 'dbo') }}"
+    tables:
+      - name: raw_cocktails
+        description: "Raw cocktail data from API extracts"
+        loaded_at_field: extracted_at

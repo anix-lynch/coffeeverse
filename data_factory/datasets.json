@@ -1,0 +1,64 @@
+{
+  "datasets": [
+    {
+      "name": "RawCocktailData_Blob",
+      "type": "AzureBlob",
+      "linkedServiceName": {
+        "referenceName": "AzureBlobStorage_LinkedService",
+        "type": "LinkedServiceReference"
+      },
+      "properties": {
+        "typeProperties": {
+          "format": {
+            "type": "JsonFormat"
+          },
+          "fileName": "cocktails_@{formatDateTime(utcnow(), 'yyyyMMddHHmmss')}.json",
+          "folderPath": "coffeeverse-raw-data"
+        }
+      }
+    },
+    {
+      "name": "ProcessedCocktailData_Blob",
+      "type": "AzureBlob",
+      "linkedServiceName": {
+        "referenceName": "AzureBlobStorage_LinkedService",
+        "type": "LinkedServiceReference"
+      },
+      "properties": {
+        "typeProperties": {
+          "format": {
+            "type": "JsonFormat"
+          },
+          "fileName": "processed_cocktails_@{formatDateTime(utcnow(), 'yyyyMMddHHmmss')}.json",
+          "folderPath": "coffeeverse-processed-data"
+        }
+      }
+    },
+    {
+      "name": "CocktailDB_API",
+      "type": "RestResource",
+      "linkedServiceName": {
+        "referenceName": "CocktailDB_API_LinkedService",
+        "type": "LinkedServiceReference"
+      },
+      "properties": {
+        "typeProperties": {
+          "relativeUrl": "api/json/v1/1/filter.php?c=@{pipeline().parameters.cocktailType}"
+        }
+      }
+    },
+    {
+      "name": "CosmosDb_Cocktails",
+      "type": "CosmosDbSqlApiCollection",
+      "linkedServiceName": {
+        "referenceName": "AzureCosmosDb_LinkedService",
+        "type": "LinkedServiceReference"
+      },
+      "properties": {
+        "typeProperties": {
+          "collectionName": "cocktails"
+        }
+      }
+    }
+  ]
+}
