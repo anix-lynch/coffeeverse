@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  coffeeverse-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: coffeeverse-dashboard
+    ports:
+      - "8501:8501"
+    environment:
+      # Azure credentials (pass via environment variables)
+      - AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT}
+      - AZURE_STORAGE_KEY=${AZURE_STORAGE_KEY}
+      - AZURE_COSMOS_URL=${AZURE_COSMOS_URL}
+      - AZURE_COSMOS_KEY=${AZURE_COSMOS_KEY}
+    volumes:
+      - ./logs:/opt/coffeeverse/logs
+      - ./.streamlit:/opt/coffeeverse/.streamlit
+    networks:
+      - coffeeverse-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  coffeeverse-network:
+    driver: bridge
+
