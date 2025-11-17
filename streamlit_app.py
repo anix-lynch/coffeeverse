@@ -49,8 +49,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Header
-st.title("☕ Coffeeverse Azure ETL Pipeline Dashboard")
-st.caption("Azure-native serverless ETL: Blob Storage → Functions → Cosmos DB | Orchestrated by Data Factory + dbt")
+st.title("☕ Coffeeverse - Data Engineering Portfolio")
+st.caption("Demonstrating Azure ETL Architecture: Blob Storage → Functions → Cosmos DB | Orchestrated by Data Factory + dbt")
 st.markdown("---")
 
 # Sidebar
@@ -63,9 +63,9 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("### 📊 Pipeline Status")
     
-    status = "🟡 AWAITING CONFIGURATION"
-    details = "Add Azure secrets to Streamlit Cloud to connect real data"
-    st.markdown(f"<p class='status-warning'>{status}</p>", unsafe_allow_html=True)
+    status = "✅ DEMO MODE - WORKING"
+    details = "Showing sample data. Add Azure secrets to connect real resources."
+    st.markdown(f"<p class='status-success'>{status}</p>", unsafe_allow_html=True)
     st.caption(details)
     
     st.markdown("---")
@@ -195,24 +195,41 @@ with col2:
 
 # Configuration section
 st.markdown("---")
-st.header("🔐 Configuration")
+st.header("ℹ️ About This Project")
 
 st.info("""
-**To connect real Azure data:**
+**Coffeeverse** demonstrates Azure ETL architecture using a Streamlit dashboard.
 
-1. Create Azure resources:
+**What You See:**
+- Sample cocktail data (demo)
+- 4 interactive Plotly charts
+- Architecture overview
+- Cost breakdown for Azure Free Tier
+
+**To Use Real Azure Data:**
+
+1. Set up Azure resources:
    - Blob Storage Account
    - Cosmos DB Account
+   - Azure Functions
+   - Azure Data Factory
 
-2. Add 4 secrets to Streamlit Cloud settings:
-   - `AZURE_STORAGE_ACCOUNT`: Your storage account name
-   - `AZURE_STORAGE_KEY`: Your storage account key
-   - `AZURE_COSMOS_URL`: Your Cosmos DB endpoint
-   - `AZURE_COSMOS_KEY`: Your Cosmos DB key
+2. Add 4 environment variables:
+   - `AZURE_STORAGE_ACCOUNT`
+   - `AZURE_STORAGE_KEY`
+   - `AZURE_COSMOS_URL`
+   - `AZURE_COSMOS_KEY`
 
-3. Redeploy app - dashboard will auto-connect!
+3. Redeploy - dashboard auto-connects to real data!
 
-**For Azure Free Tier setup**: https://docs.microsoft.com/azure/free
+**This project showcases:**
+- ✅ Azure architecture knowledge
+- ✅ Data engineering best practices
+- ✅ Streamlit + Plotly visualization
+- ✅ Docker containerization
+- ✅ $0/month cost design
+
+**For Azure setup**: https://learn.microsoft.com/azure/
 """)
 
 # Footer
