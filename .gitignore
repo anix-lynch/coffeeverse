@@ -38,3 +38,4 @@ ENV/
 *.swo
 *~
 
+AZURE_CREDENTIALS.md
