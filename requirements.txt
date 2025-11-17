@@ -1,12 +1,6 @@
-# Streamlit Cloud - Ultra-Minimal Dependencies
-# Removed: pyarrow (build issues), azure-identity, azure-functions
-# Essential only: streamlit, pandas, plotly, azure services
-
 streamlit>=1.28.0
 plotly>=5.15.0
 pandas>=2.0.0
 python-dotenv>=1.0.0
-
-# Azure SDK - Minimal set
-azure-storage-blob>=12.19.0
-azure-cosmos>=4.5.0
+azure-storage-blob==12.19.0
+azure-cosmos==4.5.0
