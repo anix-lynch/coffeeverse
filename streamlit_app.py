@@ -19,6 +19,7 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime, timedelta
 import numpy as np
+import os
 
 # Page configuration
 st.set_page_config(
@@ -63,8 +64,21 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("### 📊 Pipeline Status")
     
-    status = "✅ DEMO MODE - WORKING"
-    details = "Showing sample data. Add Azure secrets to connect real resources."
+    # Check if Azure credentials are configured
+    azure_connected = all([
+        os.environ.get('AZURE_STORAGE_ACCOUNT'),
+        os.environ.get('AZURE_STORAGE_KEY'),
+        os.environ.get('AZURE_COSMOS_URL'),
+        os.environ.get('AZURE_COSMOS_KEY')
+    ])
+    
+    if azure_connected:
+        status = "🟢 LIVE - Azure Connected"
+        details = f"Connected to {os.environ.get('AZURE_STORAGE_ACCOUNT')} & Cosmos DB"
+    else:
+        status = "✅ DEMO MODE - WORKING"
+        details = "Showing sample data. Add Azure secrets to connect real resources."
+    
     st.markdown(f"<p class='status-success'>{status}</p>", unsafe_allow_html=True)
     st.caption(details)
     

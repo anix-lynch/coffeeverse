@@ -14,15 +14,14 @@ echo "🚀 COFFEEVERSE - Azure Resource Creation"
 echo "========================================"
 echo ""
 
-# Step 1: Login and set subscription
-echo "Step 1: Setting subscription..."
-az account set --subscription "$SUBSCRIPTION_ID"
-az account show --output table
+# Step 1: Verify subscription
+echo "Step 1: Verifying subscription..."
+az account show --output table --subscription "$SUBSCRIPTION_ID"
 echo ""
 
 # Step 2: Create resource group (if doesn't exist)
 echo "Step 2: Creating/verifying resource group..."
-az group create --name "$RESOURCE_GROUP" --location "$LOCATION" || echo "Resource group already exists"
+az group create --name "$RESOURCE_GROUP" --location "$LOCATION" --subscription "$SUBSCRIPTION_ID" || echo "Resource group already exists"
 echo ""
 
 # Step 3: Create Storage Account
