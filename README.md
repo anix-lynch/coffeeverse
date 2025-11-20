@@ -1,233 +1,59 @@
-# 🍵 Coffeeverse: Azure ETL Pipeline
+# ☕ Coffeeverse: Azure Cloud ETL Pipeline
 
-An end-to-end Azure-native ETL/ELT pipeline demonstrating enterprise-grade data engineering practices with serverless technologies.
+![Coffeeverse Demo](https://raw.githubusercontent.com/anix-lynch/www.gozeroshot.dev/main/public/coffeeverse.gif)
 
-![Demo](demo.gif)
+## 🚀 Live Demo
+**[Try it now →](https://coffeeverse.streamlit.app)**
 
-🔗 **Live Dashboard**: [coffeeverse.streamlit.app](https://coffeeverse.streamlit.app)
-🔗 **GitHub Repository**: [github.com/anix-lynch/coffeeverse](https://github.com/anix-lynch/coffeeverse)
+## 📊 Overview
+Azure-native ETL pipeline demonstrating enterprise Microsoft stack with Blob Storage, Azure Functions, Cosmos DB, orchestrated by Azure Data Factory + dbt. Production-grade serverless architecture running on Azure Free Tier.
 
-## 🏗️ Architecture Overview
+### ✨ Key Features
+- **Azure-Native Stack**: Blob Storage, Functions, Cosmos DB, Data Factory
+- **Serverless Transformation**: Event-driven data processing
+- **Docker Deployment**: Containerized dashboard
+- **Infrastructure as Code**: Bicep templates
+- **Real Cosmos DB**: Live NoSQL database integration
+- **$0/month**: Runs entirely on Azure Free Tier
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Azure Blob    │    │ Azure Functions │    │  Cosmos DB      │
-│   Storage       │───▶│   (Transform)   │───▶│   (Load)        │
-│   (Extract)     │    │   Python ETL    │    │                 │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-         ▼                       ▼                       ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│ Azure Data      │    │ Azure Data      │    │     dbt-core    │
-│ Factory         │    │ Factory         │    │   (Modeling)    │
-│ (Orchestration) │    │ (Pipelines)     │    │                 │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
+### 🛠️ Tech Stack
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Azure](https://img.shields.io/badge/Azure-0078D4?style=flat&logo=microsoftazure&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+![Cosmos DB](https://img.shields.io/badge/Cosmos_DB-0078D4?style=flat&logo=microsoftazure&logoColor=white)
 
-## 🚀 Quick Start
-
-### Prerequisites
-- Azure CLI configured with appropriate permissions
-- Docker (optional, for containerized deployment)
-- Python 3.11+
-
-### 1. Clone and Setup
-```bash
-git clone https://github.com/anix-lynch/coffeeverse
-cd coffeeverse
-pip install -r requirements.txt
-```
-
-### 2. Configure Azure Credentials
-```bash
-# Login to Azure
-az login
-
-# Set your subscription
-az account set --subscription "Your-Subscription-ID"
-
-# Create service principal for automation
-az ad sp create-for-rbac --name "coffeeverse-sp" --role contributor \
-  --scopes /subscriptions/{subscription-id}
-```
-
-### 3. Deploy Infrastructure
-```bash
-# Deploy ARM templates
-./deploy/deploy.sh
-
-# Or use Bicep
-az deployment group create \
-  --resource-group coffeeverse-rg \
-  --template-file deploy/main.bicep
-```
-
-### 4. Run ETL Pipeline
-```bash
-# Trigger Azure Data Factory pipeline
-az datafactory pipeline create-run \
-  --resource-group coffeeverse-rg \
-  --factory-name coffeeverse-adf \
-  --name coffeeverse-etl-pipeline
-```
-
-## 🚀 Deployment Status
-
-### ✅ **Distro Dojo Deployment Complete**
-Following the Distro Dojo rule for maximum visibility and accessibility:
-
-| Platform | Status | URL |
-|----------|--------|-----|
-| **GitHub** | ✅ Deployed | [github.com/anix-lynch/coffeeverse](https://github.com/anix-lynch/coffeeverse) |
-| **Streamlit Cloud** | 🔄 Ready | [coffeeverse.streamlit.app](https://coffeeverse.streamlit.app) |
-| **Docker Hub** | 📋 Planned | *(Containerized ETL pipeline)* |
-| **Portfolio** | 📋 Planned | *(gozeroshot.dev)* |
-
-### **Deploy to Streamlit Cloud**
-1. Go to [share.streamlit.io](https://share.streamlit.io)
-2. Connect GitHub repo: `anix-lynch/coffeeverse`
-3. Set main file: `streamlit_app.py`
-4. Add Azure secrets from `.env.azure` file
-5. Deploy!
-
-*See [STREAMLIT_DEPLOYMENT.md](STREAMLIT_DEPLOYMENT.md) for detailed instructions.*
+- **Storage**: Azure Blob Storage
+- **Compute**: Azure Functions
+- **Database**: Azure Cosmos DB
+- **Orchestration**: Azure Data Factory + dbt
+- **Visualization**: Streamlit
+- **IaC**: Bicep
+- **Deployment**: Docker
 
 ## 📁 Project Structure
-
 ```
 coffeeverse/
-├── azure_function/              # Azure Functions (serverless)
-│   ├── function_app.py
-│   ├── host.json
-│   └── requirements.txt
-├── data_factory/                # Azure Data Factory pipelines
-│   ├── pipeline.json
-│   └── linked_services.json
-├── dbt_project/                 # dbt data transformation project
-│   ├── dbt_project.yml
-│   ├── profiles.yml
-│   └── models/
-│       ├── staging/
-│       └── marts/
-├── cosmosdb_schema.json         # Cosmos DB container schema
-├── deploy/                      # Infrastructure as Code
-│   ├── main.bicep               # Bicep template
-│   ├── main.json                # ARM template
-│   ├── deploy.sh                # Deployment script
-│   └── destroy.sh               # Teardown script
-├── streamlit_app.py             # Monitoring dashboard
-├── requirements.txt             # Python dependencies
-├── Dockerfile                   # Container configuration
-└── README.md                    # This file
+├── azure-functions/     # Serverless compute
+├── dbt/                 # Data transformation
+├── bicep/               # Infrastructure templates
+├── streamlit_app.py     # Interactive dashboard
+└── cosmos-config/       # Database setup
 ```
 
-## 🛠️ Technology Stack
+## 🎯 Use Cases
+- Learn Azure cloud data engineering
+- Build enterprise ETL pipelines
+- Master Azure serverless architecture
+- Deploy production analytics dashboards
 
-| Component | Technology | Purpose |
-|-----------|------------|---------|
-| **Extract** | Azure Blob Storage | Raw data storage and ingestion |
-| **Transform** | Azure Functions | Serverless data processing |
-| **Load** | Azure Cosmos DB | NoSQL data storage |
-| **Model** | dbt-core + Azure Synapse | Data modeling and analytics |
-| **Orchestrate** | Azure Data Factory | Pipeline orchestration |
+## 👨‍💻 Author
+**Anix Lynch** - Data Scientist & ML Engineer
 
-## 🎯 Key Features
-
-### Enterprise ETL Capabilities
-- **Serverless Architecture**: No servers to manage, automatic scaling
-- **Azure-Native**: Full integration with Azure ecosystem
-- **Data Quality**: Automated validation and monitoring
-- **Incremental Processing**: Efficient handling of new data
-- **Error Handling**: Robust retry mechanisms and monitoring
-
-### Azure Free Tier Compliant
-- **Azure Functions**: 1M executions/month free
-- **Cosmos DB**: 1000 RU/s + 25GB storage free
-- **Blob Storage**: 5GB + 20K reads + 10K writes/month free
-- **Data Factory**: 5 activities/month free
-- **SQL Database**: 100K vCore seconds + 32GB storage/month free
-
-**Target Monthly Cost: $0** (within free tier limits)
-
-## 💰 Cost Comparison
-
-### Free Tier Limits
-| Service | Free Tier | Est. Monthly Cost |
-|---------|-----------|-------------------|
-| Blob Storage | 5GB + 20K GET + 10K PUT | $0 |
-| Functions | 1M executions | $0 |
-| Cosmos DB | 1000 RU/s + 25GB | $0 |
-| Data Factory | 5 activities | $0 |
-| SQL Database | 32GB + 100K vCore-sec | $0 |
-| **Total** | - | **$0/month** |
-
-### Cost Optimization Strategies
-1. Use serverless tiers (Azure Functions, Cosmos DB serverless)
-2. Implement auto-pause for SQL Database
-3. Use lifecycle management for Blob Storage
-4. Set up cost alerts and budgets
-5. Monitor RU consumption in Cosmos DB
-
-## 📊 AI Model Selection
-
-### Azure AI Services
-- **Azure OpenAI Service**: GPT-4 for text generation
-- **Azure Cognitive Search**: Vector search and indexing
-- **Azure ML**: Custom model training and deployment
-
-## 🗂️ Azure vs AWS vs GCP Comparison
-
-### Service Equivalents
-
-| AWS | GCP | **Azure** | Purpose |
-|-----|-----|----------|---------|
-| S3 | Cloud Storage | **Blob Storage** | Object storage |
-| Lambda | Cloud Functions | **Azure Functions** | Serverless compute |
-| DynamoDB | Firestore | **Cosmos DB** | NoSQL database |
-| Glue | Dataflow | **Data Factory** | ETL orchestration |
-| Athena | BigQuery | **Synapse Analytics** | Data warehouse |
-
-## 📚 Documentation
-
-- [Azure Free Account Setup](./docs/AZURE_SETUP.md)
-- [Cost Control Best Practices](./docs/COST_CONTROL.md)
-- [Deployment Guide](./docs/DEPLOYMENT.md)
-- [Architecture Deep Dive](./docs/ARCHITECTURE.md)
-- [dbt Transformations](./dbt_project/README.md)
-
-## 🛤️ Roadmap
-
-- [x] Azure Blob Storage setup
-- [x] Azure Functions implementation
-- [x] Cosmos DB schema design
-- [x] Data Factory pipeline
-- [x] dbt transformations
-- [ ] Azure Synapse integration
-- [ ] Power BI dashboard
-- [ ] CI/CD with Azure DevOps
-- [ ] Terraform/Bicep IaC
-- [ ] Cost monitoring automation
-
-## 🎓 Learning Goals
-
-This project demonstrates:
-- Azure serverless architecture
-- Infrastructure as Code (ARM/Bicep)
-- Data engineering best practices
-- Cost-effective cloud design
-- Multi-cloud expertise (AWS/GCP/Azure)
-
-## 🤝 Contributing
-
-Feel free to open issues or submit PRs. For major changes, please open an issue first.
-
-## 📝 License
-
-MIT License - see [LICENSE](LICENSE) for details
+[![Portfolio](https://img.shields.io/badge/Portfolio-gozeroshot.dev-blue)](https://gozeroshot.dev)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-anixlynch-0077B5?logo=linkedin)](https://linkedin.com/in/anixlynch)
+[![GitHub](https://img.shields.io/badge/GitHub-anix--lynch-181717?logo=github)](https://github.com/anix-lynch)
 
 ---
 
-**Part of the "Verses" Portfolio**: [Mocktailverse (AWS)](../mocktailverse) | **Coffeeverse (Azure)** | [Smoothieverse (GCP)](../smoothieverse)
-
-**Author**: Anix Lynch | [Portfolio](https://gozeroshot.dev) | [GitHub](https://github.com/anix-lynch)
-
+⭐ **Star this repo** if you find it useful!
