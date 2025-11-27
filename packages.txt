@@ -1,2 +1,0 @@
-# System packages for Streamlit Cloud
-# Empty - no system packages needed for basic Streamlit app
