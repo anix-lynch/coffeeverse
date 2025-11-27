@@ -1,6 +1,2 @@
 # System packages for Streamlit Cloud
-# Required for Azure SDK and other dependencies
-
-# Azure SDK requirements
-libffi-dev
-openssl
+# Empty - no system packages needed for basic Streamlit app
