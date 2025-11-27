@@ -3,7 +3,7 @@
 ![Coffeeverse Demo](https://raw.githubusercontent.com/anix-lynch/www.gozeroshot.dev/main/public/coffeeverse.gif)
 
 ## 🚀 Live Demo
-**[Try it now →](https://coffeeverse.streamlit.app)**
+**[Try it now →](https://coffeeverse-jhmtq3zhd49jjr5aixnfgl.streamlit.app/)**
 
 ## 📊 Overview
 Azure-native ETL pipeline demonstrating enterprise Microsoft stack with Blob Storage, Azure Functions, Cosmos DB, orchestrated by Azure Data Factory + dbt. Production-grade serverless architecture running on Azure Free Tier.
