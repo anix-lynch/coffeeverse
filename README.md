@@ -8,6 +8,11 @@
 ## 📊 Overview
 Azure-native ETL pipeline demonstrating enterprise Microsoft stack with Blob Storage, Azure Functions, Cosmos DB, orchestrated by Azure Data Factory + dbt. Production-grade serverless architecture running on Azure Free Tier.
 
+### Data Layers
+- **Bronze**: Raw ingestion (Blob Storage) - unmodified API data
+- **Silver**: Cleaned entities (Cosmos DB + dbt staging) - validated and enriched
+- **Gold**: Analytics-ready tables (dbt marts) - business metrics and aggregations
+
 ### ✨ Key Features
 - **Azure-Native Stack**: Blob Storage, Functions, Cosmos DB, Data Factory
 - **Serverless Transformation**: Event-driven data processing
@@ -35,7 +40,7 @@ Azure-native ETL pipeline demonstrating enterprise Microsoft stack with Blob Sto
 ```
 coffeeverse/
 ├── src/
-│   ├── app/             # Streamlit dashboard
+│   ├── app/             # Streamlit dashboard (serving layer)
 │   ├── pipelines/       # Azure Functions (ETL workers)
 │   └── common/          # Shared utilities & schemas
 ├── infrastructure/
@@ -44,8 +49,10 @@ coffeeverse/
 │   └── scripts/         # Deployment scripts
 ├── dbt/                 # Data transformations (Silver/Gold)
 ├── data/
-│   ├── schemas/         # Data contracts
-│   └── sample/          # Sample input/output
+│   ├── bronze/          # Raw sample data
+│   ├── silver/          # Cleaned sample data
+│   ├── gold/            # Analytics sample data
+│   └── schemas/         # Data contracts (JSON Schema)
 ├── docker/              # Container configs
 ├── docs/                # Architecture & runbooks
 ├── tests/               # Unit & integration tests

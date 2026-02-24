@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Cocktail Data Contract",
+  "description": "Expected structure for incoming cocktail data from TheCocktailDB API",
+  "type": "object",
+  "required": [
+    "idDrink",
+    "strDrink",
+    "strCategory",
+    "strAlcoholic",
+    "strInstructions"
+  ],
+  "properties": {
+    "idDrink": {
+      "type": "string",
+      "description": "Unique cocktail identifier",
+      "pattern": "^[0-9]+$"
+    },
+    "strDrink": {
+      "type": "string",
+      "description": "Cocktail name",
+      "minLength": 1
+    },
+    "strCategory": {
+      "type": "string",
+      "description": "Cocktail category",
+      "enum": ["Ordinary Drink", "Cocktail", "Shot", "Coffee / Tea", "Homemade Liqueur", "Punch / Party Drink", "Beer", "Soft Drink"]
+    },
+    "strAlcoholic": {
+      "type": "string",
+      "description": "Alcoholic status",
+      "enum": ["Alcoholic", "Non alcoholic", "Optional alcohol"]
+    },
+    "strGlass": {
+      "type": ["string", "null"],
+      "description": "Recommended glass type"
+    },
+    "strInstructions": {
+      "type": "string",
+      "description": "Preparation instructions",
+      "minLength": 10
+    },
+    "strDrinkThumb": {
+      "type": ["string", "null"],
+      "description": "Thumbnail image URL",
+      "format": "uri"
+    },
+    "strIngredient1": {
+      "type": ["string", "null"],
+      "description": "First ingredient"
+    },
+    "strMeasure1": {
+      "type": ["string", "null"],
+      "description": "First ingredient measure"
+    }
+  },
+  "additionalProperties": true,
+  "examples": [
+    {
+      "idDrink": "11007",
+      "strDrink": "Margarita",
+      "strCategory": "Ordinary Drink",
+      "strAlcoholic": "Alcoholic",
+      "strGlass": "Cocktail glass",
+      "strInstructions": "Rub the rim of the glass with the lime slice...",
+      "strIngredient1": "Tequila",
+      "strMeasure1": "1 1/2 oz"
+    }
+  ]
+}
