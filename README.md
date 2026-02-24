@@ -36,16 +36,41 @@ Azure-native ETL pipeline demonstrating enterprise Microsoft stack with Blob Sto
 coffeeverse/
 ├── src/
 │   ├── app/             # Streamlit dashboard
-│   └── functions/       # Azure Functions (ETL)
+│   ├── pipelines/       # Azure Functions (ETL workers)
+│   └── common/          # Shared utilities & schemas
 ├── infrastructure/
 │   ├── bicep/           # IaC templates
-│   ├── data_factory/    # ADF pipelines
+│   ├── data_factory/    # ADF orchestration
 │   └── scripts/         # Deployment scripts
-├── dbt/                 # Data transformations
-├── data/                # Data artifacts & schemas
+├── dbt/                 # Data transformations (Silver/Gold)
+├── data/
+│   ├── schemas/         # Data contracts
+│   └── sample/          # Sample input/output
 ├── docker/              # Container configs
-└── tests/               # Unit & integration tests
+├── docs/                # Architecture & runbooks
+├── tests/               # Unit & integration tests
+├── Makefile             # One-liner commands
+└── README.md
 ```
+
+## 🚀 Quick Start
+
+```bash
+# Setup environment
+make setup
+
+# Run locally
+make run-app
+
+# Deploy to Azure
+make deploy-infra
+make deploy-functions
+
+# Run tests
+make test
+```
+
+See [docs/RUNBOOK.md](docs/RUNBOOK.md) for detailed instructions.
 
 ## 🎯 Use Cases
 - Learn Azure cloud data engineering

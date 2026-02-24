@@ -1,0 +1,45 @@
+[
+  {
+    "id": "11007",
+    "name": "Margarita",
+    "category": "Ordinary Drink",
+    "alcoholic": true,
+    "glass": "Cocktail glass",
+    "instructions": "Rub the rim of the glass with the lime slice to make the salt stick to it...",
+    "thumbnail_url": null,
+    "ingredients": [
+      {"name": "Tequila", "measure": "1 1/2 oz"},
+      {"name": "Triple sec", "measure": "1/2 oz"},
+      {"name": "Lime juice", "measure": "1 oz"},
+      {"name": "Salt", "measure": ""}
+    ],
+    "ingredient_count": 4,
+    "complexity_score": 4.2,
+    "estimated_calories": 200,
+    "processed_at": "2024-02-23T12:00:00Z",
+    "source": "thecocktaildb",
+    "version": "1.0"
+  },
+  {
+    "id": "11000",
+    "name": "Mojito",
+    "category": "Cocktail",
+    "alcoholic": true,
+    "glass": "Highball glass",
+    "instructions": "Muddle mint leaves with sugar and lime juice...",
+    "thumbnail_url": null,
+    "ingredients": [
+      {"name": "Light rum", "measure": "2-3 oz"},
+      {"name": "Lime", "measure": "Juice of 1"},
+      {"name": "Sugar", "measure": "2 tsp"},
+      {"name": "Mint", "measure": "2-4"},
+      {"name": "Soda water", "measure": ""}
+    ],
+    "ingredient_count": 5,
+    "complexity_score": 5.8,
+    "estimated_calories": 180,
+    "processed_at": "2024-02-23T12:01:00Z",
+    "source": "thecocktaildb",
+    "version": "1.0"
+  }
+]
