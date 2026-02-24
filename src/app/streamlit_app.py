@@ -31,23 +31,23 @@ st.set_page_config(
 
 # Custom CSS
 st.markdown("""
-<style>
-.metric-card {
-    background-color: #f0f2f6;
-    padding: 20px;
-    border-radius: 10px;
-    border-left: 4px solid #0078d4;
-}
-.status-success {
-    color: #00c853;
-    font-weight: bold;
-}
-.status-warning {
-    color: #ff9800;
-    font-weight: bold;
-}
-</style>
-""", unsafe_allow_html=True)
+    <style>
+    .metric-card {
+        background-color: #f0f2f6;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 4px solid #0078d4;
+    }
+    .status-success {
+        color: #00c853;
+        font-weight: bold;
+    }
+    .status-warning {
+        color: #ff9800;
+        font-weight: bold;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
 # Header
 st.title("☕ Coffeeverse - Data Engineering Portfolio")

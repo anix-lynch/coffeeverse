@@ -34,11 +34,17 @@ Azure-native ETL pipeline demonstrating enterprise Microsoft stack with Blob Sto
 ## 📁 Project Structure
 ```
 coffeeverse/
-├── azure-functions/     # Serverless compute
-├── dbt/                 # Data transformation
-├── bicep/               # Infrastructure templates
-├── streamlit_app.py     # Interactive dashboard
-└── cosmos-config/       # Database setup
+├── src/
+│   ├── app/             # Streamlit dashboard
+│   └── functions/       # Azure Functions (ETL)
+├── infrastructure/
+│   ├── bicep/           # IaC templates
+│   ├── data_factory/    # ADF pipelines
+│   └── scripts/         # Deployment scripts
+├── dbt/                 # Data transformations
+├── data/                # Data artifacts & schemas
+├── docker/              # Container configs
+└── tests/               # Unit & integration tests
 ```
 
 ## 🎯 Use Cases
